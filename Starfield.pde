@@ -7,24 +7,27 @@ void setup()
 	colorOne = new int[1000];
 	colorTwo = new int[1000];
 	colorThree = new int[1000];
-	for(int i = 0; i < dots.length-1; i++)
+	for(int i = 0; i < dots.length-2; i++)
 	{
 		dots[i] = new NormalParticle();
 		colorOne[i] = (int)(Math.random()*256);
 		colorTwo[i] = (int)(Math.random()*256);
 		colorThree[i] = (int)(Math.random()*256);
 	}
-	dots[999] = new OddballParticle();
+	dots[998] = new OddballParticle();
+	dots[999] = new JumboParticle();
 }
 void draw()
 {
 	background(0);
-	for(int i = 0; i < dots.length-1; i++)
+	for(int i = 0; i < dots.length-2; i++)
 	{
 		fill(colorOne[i],colorTwo[i],colorThree[i]);
 		dots[i].move();
 		dots[i].show();
 	}
+	dots[998].show();
+	dots[998].move();
 	dots[999].show();
 	dots[999].move();
 }
@@ -100,5 +103,12 @@ class OddballParticle implements Particle
 	{
 		fill(255,0,0);
 		ellipse((float)oX,(float)oY,15,15);
+	}
+}
+class JumboParticle extends NormalParticle
+{
+	public void show()
+	{
+		ellipse((float)nX,(float)nY,30,30);
 	}
 }
